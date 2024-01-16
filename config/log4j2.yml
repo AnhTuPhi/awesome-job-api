@@ -1,0 +1,39 @@
+Configuration:
+  status: warn
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: '%d [%t] %notEmpty{- %X{x-request-id}} - %c{1.} - %highlight{%-5level[%L] : %replace{%msg}{"[\r\n]"}{''}%n%throwable}{FATAL=Bright red, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=black}'
+        disableAnsi: false
+    RollingRandomAccessFile:
+      - name: INFO
+        fileName: log/awesome-job-api.log
+        filePattern: log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-awesome-job-api-%i.log
+        PatternLayout:
+          pattern: '%d [%t] %notEmpty{- %X{x-request-id}} - %c{1.} - %-5level[%L] : %m%n'
+        Policies:
+          TimeBasedTriggeringPolicy: {
+          }
+          OnStartupTriggeringPolicy: {
+          }
+          SizeBasedTriggeringPolicy:
+            size: 200 MB
+  Loggers:
+    Logger:
+      - name: EventLogger
+        level: info
+        additivity: false
+        AppenderRef:
+          - ref: ERROR
+          - ref: INFO
+          - ref: JSON
+    Root:
+      level: info
+      AppenderRef:
+        - ref: CONSOLE
+        - ref: ERROR
+          level: error
+        - ref: INFO
+        - ref: JSON
