@@ -56,3 +56,6 @@ decorator:
       enable-logging: true
       multiline: true
       log-format: "connectionId: %(connectionId) | executionTime:  %(executionTime)ms | type: %(category)\n%(sql)"
+
+github:
+  restapi: https://api.github.com
