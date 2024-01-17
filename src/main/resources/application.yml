@@ -59,3 +59,14 @@ decorator:
 
 github:
   restapi: https://api.github.com
+  awesome-job:
+    owner: awesome-jobs
+    repo: vietnam
+
+feign:
+  client:
+    config:
+      default:
+        logger-level: full
+  webclient:
+    disableSSl: true
