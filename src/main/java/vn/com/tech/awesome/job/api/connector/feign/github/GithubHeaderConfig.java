@@ -20,7 +20,7 @@ public class GithubHeaderConfig {
         Map<String, String> mapper = new HashMap<>(2);
         mapper.put("Accept", "application/vnd.github+json");
         mapper.put("X-GitHub-Api-Version", "2022-11-28");
-        mapper.put("Authorization", "Bearer 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");
+        mapper.put("Authorization", "Bearer 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");
 
         return mapper;
     }

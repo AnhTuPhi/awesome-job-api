@@ -3,10 +3,15 @@ package vn.com.tech.awesome.job.api.controller;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import vn.com.tech.awesome.job.api.service.IssueService;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
+import vn.com.tech.awesome.job.api.model.dto.CommonQuery;
+import vn.com.tech.awesome.job.api.model.dto.GithubQuery;
+import vn.com.tech.awesome.job.api.model.dto.response.CommentResponse;
+import vn.com.tech.awesome.job.api.model.dto.response.IssueResponse;
+import vn.com.tech.awesome.job.api.service.impl.IssueService;
+
+import java.util.List;
 
 /**
  * @author : AnhTuPhi
@@ -22,7 +27,12 @@ public class IssueController {
     IssueService service;
 
     @GetMapping
-    public Object getIssues() {
-        return service.getIssues();
+    public List<IssueResponse> getIssues(@ModelAttribute GithubQuery query) {
+        return service.getIssues(query);
+    }
+
+    @GetMapping("/{id}/comments")
+    public List<CommentResponse> getComments(@PathVariable("id") Long issueId) {
+        return service.getComments(issueId);
     }
 }

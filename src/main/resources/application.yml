@@ -35,8 +35,10 @@ logging:
     vn:
       com:
         tech:
-          userid:
-            connector: DEBUG
+          awesome:
+            job:
+              api:
+                connector: DEBUG
     org:
       springframework:
         web: info
